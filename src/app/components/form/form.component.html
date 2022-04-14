@@ -1,0 +1,47 @@
+<div class="container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+        <h4>Nombre:</h4>
+        <mat-form-field class="text-input" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input 
+            matInput 
+            placeholder="Ej. Luis Castellanos" 
+            value=""
+            formControlName="username"
+            [class]="isValidField('username')"
+            >
+        </mat-form-field>
+        <hr>
+        
+        <h4>Genero:</h4>
+        <mat-radio-group formControlName="gender" class="radio-group">
+            <mat-radio-button class="radio-btn" value="1">Masculino</mat-radio-button>
+            <mat-radio-button class="radio-btn" value="2">Femenino</mat-radio-button>
+          </mat-radio-group>
+        <hr>
+
+        <h4>Idioma:</h4>
+        <mat-form-field appearance="fill">
+          <mat-label>Idioma Nativo</mat-label>
+          <mat-select formControlName="lang" >
+            <mat-option *ngFor="let lang of langs" [value]="lang.value">
+              {{lang.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <hr>
+
+        <app-datepicker formControlName="date" ></app-datepicker>
+        <hr/>
+
+        <ngb-timepicker 
+        [(ngModel)]="time"
+        formControlName="time"
+        [seconds]="true"
+        ></ngb-timepicker>
+        <hr>
+
+        <button [disabled]="signupForm.invalid" mat-raised-button color="warn">Enviar</button>
+    </form>
+</div>
